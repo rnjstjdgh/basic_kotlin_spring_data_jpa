@@ -31,10 +31,10 @@ class TestController(
             @RequestParam requestUniqueId: String
     ): ResponseEntity<User> {
 
-        EntityContext.threadLocalWorker.set(Worker(
-                uniqueId = requestUniqueId,
-                time = LocalDateTime.now()
-        ))
+//        EntityContext.threadLocalWorker.set(Worker(
+//                uniqueId = requestUniqueId,
+//                time = LocalDateTime.now()
+//        ))
 
         val transientUser = User(name = "name")
         val persistUser = userRepository.save(transientUser)
@@ -48,10 +48,10 @@ class TestController(
             @RequestParam requestUniqueId: String
     ): ResponseEntity<User> {
 
-        EntityContext.threadLocalWorker.set(Worker(
-                uniqueId = requestUniqueId,
-                time = LocalDateTime.now()
-        ))
+//        EntityContext.threadLocalWorker.set(Worker(
+//                uniqueId = requestUniqueId,
+//                time = LocalDateTime.now()
+//        ))
 
         val findUser = userRepository.findByIdOrNull(id)
                 ?: throw IllegalArgumentException("IllegalArgumentException")
