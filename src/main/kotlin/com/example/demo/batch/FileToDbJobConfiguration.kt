@@ -36,6 +36,17 @@ class FileToDbJobConfiguration(
             .build()
     }
 
+    // todo:
+    //  1) 파일수신 잡의 가장 앞에는 항상 해당 파일이 도착했는지 확인하는 step 을 위치시키는게 어떨까?
+    //  2) 여러 파일에 대해 동일한 배치잡을 돌려야하는데, 이건 어떻게 우아하게 할 수 있지?
+    //    2-1) MultiResourceItemReader 사용?
+    //     ㄴ https://prateek-ashtikar512.medium.com/spring-batch-read-from-multiple-flat-files-261305fe63c8
+    //     ㄴ https://www.yawintutor.com/how-to-read-csv-file-in-spring-boot-batch/
+    //     ㄴ https://renuevo.github.io/spring/batch/spring-batch-chapter-2/
+    //    2-2) 동일 잡을 독립적인 스케쥴러를 통해 돌리고 파일 경로를 job parameter 로 받아 실행
+    //  3) 반복 & 스킵 & 재시도를 해야할 요구사항이 있을까? 있다면 어떻게 할 수 있지?
+    //  4) 병렬처리해야할 니즈가 있을까? 있다면 어떻게 할 수 있지?
+
     @Bean
     fun fileToDbStep(): Step {
         return stepBuilderFactory.get("fileToDbStep")
